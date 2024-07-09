@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScrumTracker.API", "ScrumTracker\ScrumTracker.API.csproj", "{C1D3D5E2-394E-4772-8170-BBFB659687F4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccessLayer", "DataAccessLayer", "{230522ED-9594-4106-ADA4-D5F5A0D87639}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PresentationLayer", "PresentationLayer", "{739DD6F2-0BB7-408B-A460-C19707F56211}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScrumTracker.DataObject", "ScrumTracker.DataObject\ScrumTracker.DataObject.csproj", "{00DC1851-7E48-42DB-96E1-397CC7AC35F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScrumTracker.DAL", "ScrumTracker.DAL\ScrumTracker.DAL.csproj", "{C01A485B-CFC6-4A80-88F4-492431E63FFF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BusinessLogicLayer", "BusinessLogicLayer", "{06965D5F-AE6D-4F28-86CF-A0A885FD9694}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScrumTracker.BAL", "ScrumTracker.BAL\ScrumTracker.BAL.csproj", "{78A48EA4-D9F9-45C4-8BFB-EE67CB3C47D3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C1D3D5E2-394E-4772-8170-BBFB659687F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1D3D5E2-394E-4772-8170-BBFB659687F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1D3D5E2-394E-4772-8170-BBFB659687F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1D3D5E2-394E-4772-8170-BBFB659687F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00DC1851-7E48-42DB-96E1-397CC7AC35F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00DC1851-7E48-42DB-96E1-397CC7AC35F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00DC1851-7E48-42DB-96E1-397CC7AC35F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00DC1851-7E48-42DB-96E1-397CC7AC35F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C01A485B-CFC6-4A80-88F4-492431E63FFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C01A485B-CFC6-4A80-88F4-492431E63FFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C01A485B-CFC6-4A80-88F4-492431E63FFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C01A485B-CFC6-4A80-88F4-492431E63FFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78A48EA4-D9F9-45C4-8BFB-EE67CB3C47D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78A48EA4-D9F9-45C4-8BFB-EE67CB3C47D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78A48EA4-D9F9-45C4-8BFB-EE67CB3C47D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78A48EA4-D9F9-45C4-8BFB-EE67CB3C47D3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C1D3D5E2-394E-4772-8170-BBFB659687F4} = {739DD6F2-0BB7-408B-A460-C19707F56211}
+		{00DC1851-7E48-42DB-96E1-397CC7AC35F1} = {230522ED-9594-4106-ADA4-D5F5A0D87639}
+		{C01A485B-CFC6-4A80-88F4-492431E63FFF} = {230522ED-9594-4106-ADA4-D5F5A0D87639}
+		{78A48EA4-D9F9-45C4-8BFB-EE67CB3C47D3} = {06965D5F-AE6D-4F28-86CF-A0A885FD9694}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6ED49111-426D-4905-A863-CEA1D561B73D}
+	EndGlobalSection
+EndGlobal
