@@ -9,5 +9,8 @@ namespace ScrumTracker.DAL.IDataAccessLayer
     public interface IUnitofData
     {
         public IUserServiceDal UserServiceDal { get; }
+        public IAuthenticationDal AuthenticationDal { get; }
+        public IRefreshTokenDal RefreshTokenDal { get; }
+        public IRegistrationDal RegistrationDal { get; }
     }
 }
