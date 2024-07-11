@@ -1,8 +1,11 @@
 ﻿using Dapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using ScrumTracker.DAL.IDataAccessLayer;
 using ScrumTracker.DataObject.Context;
+using ScrumTracker.DataObject.Entity;
 using ScrumTracker.DataObject.ResponseEntity;
+using ScrumTracker.DataObject.ViewEntity;
 using ScrumTracker.Models;
 using System;
 using System.Collections.Generic;
@@ -22,20 +25,46 @@ namespace ScrumTracker.DAL.DataAccessLayer
         {
             _context = context;
         }
-        public async Task<List<UserMasterViewEntity>> GetByDepartment(string department)
+
+        public async Task<ResponseEntity<List<UserStatusEntity>>> GetAllUserStatus()
+        {
+            var userstatus = await _context.UserStatus.ToListAsync();
+            return new ResponseEntity<List<UserStatusEntity>>
+            {
+                Result=userstatus,
+                IsSuccess = true,
+                ResponseMessage = "Datas Retrieved Successfully!",
+                StatusMessage = HttpStatusCode.OK.ToString(),
+                StatusCode = StatusCodes.Status200OK,
+            };
+
+
+        }
+        public async Task<ResponseEntity<List<UserStatusViewEntity>>> GetByDepartment(string department)
         {
             var connection = _context.Database.GetDbConnection();
             var parameters = new DynamicParameters();
             parameters.Add("@Department", department, DbType.String);
 
-            var employees = await connection.QueryAsync<UserMasterViewEntity>("spGetNamesByDepartment", parameters, commandType: CommandType.StoredProcedure);
-            var employeeDtos = employees.Select(e => new UserMasterViewEntity
+            var employees = await connection.QueryAsync<UserStatusEntity>("spGetNamesByDepartment", parameters, commandType: CommandType.StoredProcedure);
+
+            var employeeViews = employees.Select(e => new UserStatusViewEntity
             {
-                Name = e.Name,
-                Emp_Code = e.Emp_Code
+                EmpName = e.EmpName,
+                EmpCode = e.EmpCode
             }).ToList();
 
-           return employeeDtos;            
+            return new ResponseEntity<List<UserStatusViewEntity>>
+            {
+                Result = employeeViews,
+                IsSuccess = true,
+                ResponseMessage = "Datas Retrieved Successfully!",
+                StatusMessage = HttpStatusCode.OK.ToString(),
+                StatusCode = StatusCodes.Status200OK,
+            };
         }
+
+
     }
 }
+

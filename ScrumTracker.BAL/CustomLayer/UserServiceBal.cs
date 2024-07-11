@@ -1,6 +1,8 @@
 ﻿using ScrumTracker.BAL.ICustomLayer;
 using ScrumTracker.DAL.IDataAccessLayer;
+using ScrumTracker.DataObject.Entity;
 using ScrumTracker.DataObject.ResponseEntity;
+using ScrumTracker.DataObject.ViewEntity;
 using ScrumTracker.Models;
 using System;
 using System.Collections.Generic;
@@ -17,9 +19,15 @@ namespace ScrumTracker.BAL.CustomLayer
         {
             UnitofData = unitofData;
         }
-        public async Task<List<UserMasterViewEntity>> GetByDepartment(string department)
+
+        public async Task<ResponseEntity<List<UserStatusEntity>>> GetAllUserStatus()
+        {
+           return await UnitofData.UserServiceDal.GetAllUserStatus();
+        }
+        public async Task<ResponseEntity<List<UserStatusViewEntity>>> GetByDepartment(string department)
         {
             return await UnitofData.UserServiceDal.GetByDepartment(department);
         }
+
     }
 }
