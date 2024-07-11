@@ -9,5 +9,8 @@ namespace ScrumTracker.BAL.ICustomLayer
     public interface IUnitofWork
     {
        public IUserServiceBal UserServiceBal { get; }
+       public IAuthenticationBal AuthenticationBal { get; }
+       public IRefreshTokenBal RefreshTokenBal { get; }
+       public IRegistrationBal RegistrationBal { get; }
     }
 }
