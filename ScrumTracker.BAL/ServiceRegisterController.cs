@@ -24,7 +24,16 @@ namespace ScrumTracker.BAL
 
             _service.AddTransient<IUserServiceDal, UserServiceDal>();
             _service.AddTransient<IUserServiceBal, UserServiceBal>();
+
+            _service.AddTransient<IAuthenticationDal, AuthenticationDal>();
+            _service.AddTransient<IAuthenticationBal, AuthenticationBal>();
+
+            _service.AddTransient<IRefreshTokenDal, RefreshTokenDal>();
+            _service.AddTransient<IRefreshTokenBal, RefreshTokenBal>();
+
+            _service.AddTransient<IRegistrationDal, RegistrationDal>();
+            _service.AddTransient<IRegistrationBal, RegistrationBal>();
+
         }
-    }
-        
+    }       
 }

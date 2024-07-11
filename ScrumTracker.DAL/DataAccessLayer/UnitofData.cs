@@ -9,10 +9,16 @@ namespace ScrumTracker.DAL.DataAccessLayer
 {
     public class UnitofData:IUnitofData
     {
-        public UnitofData(IUserServiceDal userService)
-        {
-            UserServiceDal= userService;
+        public UnitofData(IUserServiceDal userService, IAuthenticationDal authenticationDal,
+            IRefreshTokenDal refreshTokenDal, IRegistrationDal registrationDal)        {
+            UserServiceDal = userService;
+            AuthenticationDal = authenticationDal;
+            RefreshTokenDal = refreshTokenDal;
+            RegistrationDal = registrationDal;
         }
         public IUserServiceDal UserServiceDal { get; }
+        public IAuthenticationDal AuthenticationDal { get; }
+        public IRefreshTokenDal RefreshTokenDal { get; }
+        public IRegistrationDal RegistrationDal { get; }
     }
 }
