@@ -1,4 +1,6 @@
-﻿using ScrumTracker.DataObject.ResponseEntity;
+﻿using ScrumTracker.DataObject.Entity;
+using ScrumTracker.DataObject.ResponseEntity;
+using ScrumTracker.DataObject.ViewEntity;
 using ScrumTracker.Models;
 using System;
 using System.Collections.Generic;
@@ -10,6 +12,7 @@ namespace ScrumTracker.BAL.ICustomLayer
 {
     public interface IUserServiceBal
     {
-        Task<List<UserMasterViewEntity>> GetByDepartment(string department);
+        Task<ResponseEntity<List<UserStatusViewEntity>>> GetByDepartment(string department);
+        Task<ResponseEntity<List<UserStatusEntity>>> GetAllUserStatus();
     }
 }
