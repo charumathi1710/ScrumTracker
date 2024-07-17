@@ -15,7 +15,7 @@ namespace ScrumTracker.API.Controllers
         {
             unitOfWork = unitofWork;
         }
-
+        [Tags("Authentication Token")]
         [HttpPost("login")]
         public IActionResult Login([FromBody] TokenRequestEntity request)
         {
@@ -27,7 +27,7 @@ namespace ScrumTracker.API.Controllers
             var tokens = unitOfWork.RefreshTokenBal.GenerateTokens(user);
             return Ok(tokens);
         }
-
+        [Tags("Authentication Token")]
         [HttpPost("refresh")]
         public IActionResult Refresh([FromBody] string refreshToken)
         {

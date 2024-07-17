@@ -21,7 +21,7 @@ namespace ScrumTracker.API.Controllers
             _userRepository = userRepository;
             this._context = context;
         }
-
+        [Tags("Authentication Token")]
         [HttpPost("register")]
         public async Task<IActionResult> CreateUser([FromBody] UserTokenViewEntity userView)
         {
@@ -52,7 +52,7 @@ namespace ScrumTracker.API.Controllers
                 Password = createdUser.Password,
                 CreationDate= createdUser.CreationDate,
                 HostName=createdUser.HostName,
-                UpdatedAt=createdUser.UpdatedAt,
+                UpdatedAt= createdUser.UpdatedAt,
             };
             return CreatedAtAction(nameof(GetUserById), new { id = createdUser.UsersTokenId }, userResponse);
         }
