@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ScrumTracker.DataObject.Entity
 {
-    public class RolesEntity:BaseEntity
+    public class EmpAwardEntity:BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int RoleID { get; set; }
-        public string RoleName { get; set; }
-        public string? RoleDescription { get; set; }
+        public int EmpAwardID { get; set; }
+        public int EmpDetailId { get; set; }
+        public string Month { get; set; }
+        public int Year { get; set; }
     }
 }

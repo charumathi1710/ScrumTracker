@@ -61,7 +61,6 @@ namespace ScrumTracker.DAL.DataAccessLayer
             var connection = _context.Database.GetDbConnection();
             var parameters = new DynamicParameters();
             parameters.Add("@Department", department, DbType.String);
-
             var employees = await connection.QueryAsync<EmpDetailsEntity>("SpGetNamesByDepartment", parameters, commandType: CommandType.StoredProcedure);
 
             var employeeViews = employees.Select(e => new EmpStatusViewEntity

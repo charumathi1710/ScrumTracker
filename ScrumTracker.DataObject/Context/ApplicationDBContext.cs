@@ -13,6 +13,7 @@ namespace ScrumTracker.DataObject.Context
         public DbSet<EmpScrumStatusEntity> EmpScrumStatus { get; set; }
         public DbSet<EmpWorkTypeEntity> EmpWorkType { get; set; }
         public DbSet<UserTokenEntity> UserToken { get; set; }
-        public DbSet<RolesEntity> Roles { get; set; }      
+        public DbSet<RolesEntity> Roles { get; set; } 
+        public DbSet<EmpAwardEntity> EmpAward { get; set; }          
     }
 }

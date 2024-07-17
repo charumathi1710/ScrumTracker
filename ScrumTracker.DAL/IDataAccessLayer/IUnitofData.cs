@@ -12,5 +12,6 @@ namespace ScrumTracker.DAL.IDataAccessLayer
         public IAuthenticationDal AuthenticationDal { get; }
         public IRefreshTokenDal RefreshTokenDal { get; }
         public IRegistrationDal RegistrationDal { get; }
+        public IEmpAwardDal UserAwardDal { get; }
     }
 }

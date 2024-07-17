@@ -12,5 +12,6 @@ namespace ScrumTracker.BAL.ICustomLayer
        public IAuthenticationBal AuthenticationBal { get; }
        public IRefreshTokenBal RefreshTokenBal { get; }
        public IRegistrationBal RegistrationBal { get; }
+       public IEmpAwardBal UserAwardBal { get; }
     }
 }

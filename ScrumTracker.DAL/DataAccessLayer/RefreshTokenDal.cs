@@ -1,6 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using ScrumTracker.DAL.IDataAccessLayer;
+using ScrumTracker.DataObject.Context;
 using ScrumTracker.DataObject.Entity;
 using ScrumTracker.DataObject.ResponseEntity;
 using System;
@@ -13,15 +15,17 @@ using System.Threading.Tasks;
 
 namespace ScrumTracker.DAL.DataAccessLayer
 {
-    public class RefreshTokenDal:IRefreshTokenDal
+    public class RefreshTokenDal : IRefreshTokenDal
     {
+        private readonly ApplicationDBContext _context;
         private readonly IConfiguration _configuration;
         private readonly IAuthenticationDal authenticationDal;
 
-        public RefreshTokenDal(IConfiguration configuration, IAuthenticationDal userRepository)
+        public RefreshTokenDal(IConfiguration configuration, IAuthenticationDal userRepository, ApplicationDBContext context)
         {
             _configuration = configuration;
             authenticationDal = userRepository;
+            _context = context;
         }
 
         public TokenResponse GenerateTokens(UserTokenEntity user)
@@ -30,10 +34,14 @@ namespace ScrumTracker.DAL.DataAccessLayer
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             var expiration = DateTime.Now.AddDays(5);
 
+            var userRole = _context.Roles.SingleOrDefault(r => r.RoleID == user.RoleID);
+            var roleName = userRole != null ? userRole.RoleName : string.Empty;
+
             var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Username),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(ClaimTypes.Role, roleName)
             };
 
             var token = new JwtSecurityToken(
