@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ScrumTracker.DataObject.ViewEntity
 {
-    public class UserStatusViewEntity
+    public class EmpStatusViewEntity
     {
         public string EmpName { get; set; }
         public string EmpCode { get; set; }

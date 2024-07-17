@@ -1,4 +1,5 @@
 ﻿using ScrumTracker.DataObject.Entity;
+using ScrumTracker.DataObject.RequestEntity;
 using ScrumTracker.DataObject.ResponseEntity;
 using ScrumTracker.DataObject.ViewEntity;
 using ScrumTracker.Models;
@@ -12,7 +13,15 @@ namespace ScrumTracker.DAL.IDataAccessLayer
 {
     public interface IUserServiceDal
     {
-        Task<ResponseEntity<List<UserStatusViewEntity>>> GetByDepartment(string department);
-        Task<ResponseEntity<List<EmpDetailEntity>>> GetAllUserStatus();
+        #region DailyScrum
+        Task<ResponseEntity<List<EmpStatusViewEntity>>> GetByDepartment(string department);
+        Task<ResponseEntity<List<EmpScrumStatusEntity>>> GetAllUserStatus();
+        Task<ResponseEntity<IEnumerable<EmpWorkTypeEntity>>> GetAllWorkType();
+        Task<ResponseEntity<int>> PostScrumStatusData(EmpStatusResponseEntity updatestatus);
+        #endregion
+        #region TaskOverview
+        Task<ResponseEntity<List<EmpSearchStatusViewEntity>>> SearchEmpScrumStatus(string searchTerm);
+        #endregion
     }
 }
+

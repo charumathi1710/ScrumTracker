@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using ScrumTracker.BAL;
 using ScrumTracker.DataObject.Context;
+using ScrumTracker.DataObject.RequestEntity;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
