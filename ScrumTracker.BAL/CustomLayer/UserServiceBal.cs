@@ -20,7 +20,7 @@ namespace ScrumTracker.BAL.CustomLayer
             UnitofData = unitofData;
         }
 
-        public async Task<ResponseEntity<List<UserStatusEntity>>> GetAllUserStatus()
+        public async Task<ResponseEntity<List<EmpDetailEntity>>> GetAllUserStatus()
         {
            return await UnitofData.UserServiceDal.GetAllUserStatus();
         }

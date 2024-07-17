@@ -25,7 +25,7 @@ namespace ScrumTracker.API.Controllers
             return Ok(result);
         }
         [HttpGet("GetAllUserStatus")]
-        public async Task<ActionResult<List<UserStatusEntity>>> GetAllUserStatus()
+        public async Task<ActionResult<List<EmpDetailEntity>>> GetAllUserStatus()
         {
             var result = await UnitOfWork.UserServiceBal.GetAllUserStatus();
             return Ok(result);

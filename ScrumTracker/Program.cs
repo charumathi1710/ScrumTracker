@@ -59,6 +59,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ClockSkew = TimeSpan.Zero
         };
     });
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Project Manager", policy => policy.RequireRole("Project Manager"));
+    options.AddPolicy("PC", policy => policy.RequireRole("Project Co-ordinator"));
+});
 
 var app = builder.Build();
 

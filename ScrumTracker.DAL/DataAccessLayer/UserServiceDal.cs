@@ -26,10 +26,10 @@ namespace ScrumTracker.DAL.DataAccessLayer
             _context = context;
         }
 
-        public async Task<ResponseEntity<List<UserStatusEntity>>> GetAllUserStatus()
+        public async Task<ResponseEntity<List<EmpDetailEntity>>> GetAllUserStatus()
         {
-            var userstatus = await _context.UserStatus.ToListAsync();
-            return new ResponseEntity<List<UserStatusEntity>>
+            var userstatus = await _context.EmpDetails.ToListAsync();
+            return new ResponseEntity<List<EmpDetailEntity>>
             {
                 Result=userstatus,
                 IsSuccess = true,
@@ -37,8 +37,6 @@ namespace ScrumTracker.DAL.DataAccessLayer
                 StatusMessage = HttpStatusCode.OK.ToString(),
                 StatusCode = StatusCodes.Status200OK,
             };
-
-
         }
         public async Task<ResponseEntity<List<UserStatusViewEntity>>> GetByDepartment(string department)
         {
@@ -46,7 +44,7 @@ namespace ScrumTracker.DAL.DataAccessLayer
             var parameters = new DynamicParameters();
             parameters.Add("@Department", department, DbType.String);
 
-            var employees = await connection.QueryAsync<UserStatusEntity>("spGetNamesByDepartment", parameters, commandType: CommandType.StoredProcedure);
+            var employees = await connection.QueryAsync<EmpDetailEntity>("spGetNamesByDepartment", parameters, commandType: CommandType.StoredProcedure);
 
             var employeeViews = employees.Select(e => new UserStatusViewEntity
             {

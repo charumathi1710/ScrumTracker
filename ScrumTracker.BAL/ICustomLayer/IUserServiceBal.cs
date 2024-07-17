@@ -13,6 +13,6 @@ namespace ScrumTracker.BAL.ICustomLayer
     public interface IUserServiceBal
     {
         Task<ResponseEntity<List<UserStatusViewEntity>>> GetByDepartment(string department);
-        Task<ResponseEntity<List<UserStatusEntity>>> GetAllUserStatus();
+        Task<ResponseEntity<List<EmpDetailEntity>>> GetAllUserStatus();
     }
 }
