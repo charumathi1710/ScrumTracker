@@ -19,8 +19,9 @@ namespace ScrumTracker.DAL.IDataAccessLayer
         Task<ResponseEntity<IEnumerable<EmpWorkTypeEntity>>> GetAllWorkType();
         Task<ResponseEntity<int>> PostScrumStatusData(EmpStatusResponseEntity updatestatus);
         #endregion
+
         #region TaskOverview
-        Task<ResponseEntity<List<EmpSearchStatusViewEntity>>> SearchEmpScrumStatus(string searchTerm);
+        Task<ResponseEntity<List<EmpSearchStatusViewEntity>>> SearchEmpScrumStatus(string? searchTerm,DateTime? date);
         #endregion
     }
 }

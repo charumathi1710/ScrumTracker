@@ -129,12 +129,14 @@ namespace ScrumTracker.DAL.DataAccessLayer
             }
         }
         #endregion
+
         #region TaskOverview
-        public async Task<ResponseEntity<List<EmpSearchStatusViewEntity>>> SearchEmpScrumStatus(string searchTerm)
+        public async Task<ResponseEntity<List<EmpSearchStatusViewEntity>>> SearchEmpScrumStatus(string? searchTerm,DateTime? date)
         {
             var connection = _context.Database.GetDbConnection();
             var parameters = new DynamicParameters();
             parameters.Add("@SearchTerm", searchTerm, DbType.String);
+            parameters.Add("@Date", date, DbType.Date);
 
             var employees = await connection.QueryAsync<EmpSearchStatusViewEntity>("SpSearchEmpScrumStatus", parameters, commandType: CommandType.StoredProcedure);
 

@@ -6,18 +6,20 @@ namespace ScrumTracker.BAL.CustomLayer
     {
         public UnitofWork(IUserServiceBal userService, IAuthenticationBal authenticationBal,
             IRefreshTokenBal refreshTokenBal, IRegistrationBal registrationBal,
-            IEmpAwardBal userAwardBal)
+            IEmpAwardBal userAwardBal,IQuotesBal quotesBal)
         {
             UserServiceBal = userService;
             AuthenticationBal = authenticationBal;
             RefreshTokenBal = refreshTokenBal;
             RegistrationBal = registrationBal;
             UserAwardBal = userAwardBal;
+            QuotesBal = quotesBal;
         }
         public IUserServiceBal UserServiceBal { get; }
         public IAuthenticationBal AuthenticationBal { get; }
         public IRefreshTokenBal RefreshTokenBal { get; }
         public IRegistrationBal RegistrationBal { get; }
         public IEmpAwardBal UserAwardBal { get; }
+        public IQuotesBal QuotesBal { get; }
     }
 }
