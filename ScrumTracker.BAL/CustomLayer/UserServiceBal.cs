@@ -43,10 +43,11 @@ namespace ScrumTracker.BAL.CustomLayer
             return await UnitofData.UserServiceDal.PostScrumStatusData(updatestatus);
         }
         #endregion
+
         #region TaskOverview
-        public async Task<ResponseEntity<List<EmpSearchStatusViewEntity>>> SearchEmpScrumStatus(string searchTerm)
+        public async Task<ResponseEntity<List<EmpSearchStatusViewEntity>>> SearchEmpScrumStatus(string? searchTerm, DateTime? date)
         {
-            return await UnitofData.UserServiceDal.SearchEmpScrumStatus(searchTerm);
+            return await UnitofData.UserServiceDal.SearchEmpScrumStatus(searchTerm,date);
         }
         #endregion
     }

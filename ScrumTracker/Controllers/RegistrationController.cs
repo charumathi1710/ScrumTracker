@@ -64,6 +64,5 @@ namespace ScrumTracker.API.Controllers
         {
             return Ok();
         }
-
     }
 }

@@ -57,12 +57,13 @@ namespace ScrumTracker.API.Controllers
             });
         }
         #endregion
-        #region 
+
+        #region TaskOverview
         [Tags("TaskOverview")]
         [HttpGet("Search")]
-        public async Task<IActionResult> Search(string searchTerm)
+        public async Task<IActionResult> Search(string? searchTerm, DateTime? date)
         {
-            var response = await UnitOfWork.UserServiceBal.SearchEmpScrumStatus(searchTerm);
+            var response = await UnitOfWork.UserServiceBal.SearchEmpScrumStatus(searchTerm,date);
             if (response.IsSuccess)
             {
                 return Ok(response);
