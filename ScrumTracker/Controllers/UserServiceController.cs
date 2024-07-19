@@ -57,7 +57,6 @@ namespace ScrumTracker.API.Controllers
             });
         }
         #endregion
-
         #region TaskOverview
         [Tags("TaskOverview")]
         [HttpGet("Search")]
