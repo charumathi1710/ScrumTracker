@@ -15,5 +15,6 @@ namespace ScrumTracker.DataObject.ViewEntity
         public TimeSpan? Billable { get; set; }
         public TimeSpan? NonBillable { get; set; }
         public bool IsPresent { get; set; }
+
     }
 }
