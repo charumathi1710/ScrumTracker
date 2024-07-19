@@ -10,6 +10,7 @@ namespace ScrumTracker.DataObject.ViewEntity
     {
         public string EmpName { get; set; }
         public string EmpCode { get; set; }
+        public string EmpDept { get; set; }
         public string EmpTask { get; set; }
         public string WorkType { get; set; }
         public TimeSpan? Billable { get; set; }
