@@ -2,15 +2,20 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using OfficeOpenXml;
 using ScrumTracker.BAL;
+using ScrumTracker.BAL.CustomLayer;
+using ScrumTracker.BAL.ICustomLayer;
 using ScrumTracker.DataObject.Context;
 using ScrumTracker.DataObject.RequestEntity;
 using System.Text;
 
-var builder = WebApplication.CreateBuilder(args);
+ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
+var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddInfracture();
+
 builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("dbcs")));
 
 builder.Services.AddControllers();

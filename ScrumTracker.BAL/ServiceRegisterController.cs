@@ -43,6 +43,8 @@ namespace ScrumTracker.BAL
             _service.AddTransient<IQuotesDal, QuotesDal>();
             _service.AddTransient<IQuotesBal, QuotesBal>();
 
+            _service.AddTransient<IEmpProjectDal, EmpProjectDal>();
+            _service.AddTransient<IEmpProjectBal, EmpProjectBal>();
         }
     }       
 }
