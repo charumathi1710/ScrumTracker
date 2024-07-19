@@ -13,6 +13,7 @@ namespace ScrumTracker.BAL.ICustomLayer
        public IRefreshTokenBal RefreshTokenBal { get; }
        public IRegistrationBal RegistrationBal { get; }
        public IEmpAwardBal UserAwardBal { get; }
+       public IEmpServiceBal EmpServiceBal { get; }
        public IQuotesBal QuotesBal { get; }
        public IEmpProjectBal EmpProjectBal { get; }
     }

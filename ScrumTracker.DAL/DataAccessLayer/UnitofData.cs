@@ -14,11 +14,13 @@ namespace ScrumTracker.DAL.DataAccessLayer
             IEmpAwardDal userAwardDal,IQuotesDal quotesDal,
             IEmpProjectDal empProjectDal)        
         {
+           IEmpServiceDal empServiceDal)        {
             UserServiceDal = userService;
             AuthenticationDal = authenticationDal;
             RefreshTokenDal = refreshTokenDal;
             RegistrationDal = registrationDal;
             UserAwardDal= userAwardDal;
+            EmpServiceDal = empServiceDal;
             QuotesDal= quotesDal;
             EmpProjectDal= empProjectDal;
         }
@@ -27,6 +29,7 @@ namespace ScrumTracker.DAL.DataAccessLayer
         public IRefreshTokenDal RefreshTokenDal { get; }
         public IRegistrationDal RegistrationDal { get; }
         public IEmpAwardDal UserAwardDal { get; }
+        public IEmpServiceDal EmpServiceDal { get; }
         public IQuotesDal QuotesDal { get; }
         public IEmpProjectDal EmpProjectDal { get; }
     }

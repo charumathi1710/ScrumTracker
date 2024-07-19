@@ -36,6 +36,9 @@ namespace ScrumTracker.BAL
 
             _service.AddTransient<IEmpAwardDal, EmpAwardDal>();
             _service.AddTransient<IEmpAwardBal, EmpAwardBal>();
+            
+            _service.AddTransient<IEmpServiceDal, EmpServiceDal>();
+            _service.AddTransient<IEmpServiceBal, EmpServiceBal>();
 
             _service.AddTransient<IQuotesDal, QuotesDal>();
             _service.AddTransient<IQuotesBal, QuotesBal>();
