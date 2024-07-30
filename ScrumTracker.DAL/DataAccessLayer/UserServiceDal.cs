@@ -33,7 +33,7 @@ namespace ScrumTracker.DAL.DataAccessLayer
         #region DailyScrum
         public async Task<ResponseEntity<List<EmpScrumStatusEntity>>> GetAllUserStatus()
         {
-            var userstatus = await _context.EmpScrumStatus.ToListAsync();
+            var userstatus = await _context.EmployeeScrumStatus.ToListAsync();
             return new ResponseEntity<List<EmpScrumStatusEntity>>
             {
                 Result=userstatus,
@@ -81,7 +81,7 @@ namespace ScrumTracker.DAL.DataAccessLayer
         {
             try
             {
-                var existingUpdateStatus = await _context.EmpScrumStatus
+                var existingUpdateStatus = await _context.EmployeeScrumStatus
                   .Where(x => x.EmpStatusId == updatestatus.EmpStatusId).FirstOrDefaultAsync();
                 if (existingUpdateStatus != null)
                 {
@@ -91,7 +91,7 @@ namespace ScrumTracker.DAL.DataAccessLayer
                     existingUpdateStatus.Billable = updatestatus.GetBillableTime();
                     existingUpdateStatus.NonBillable=updatestatus.GetNonBillableTime();
                     existingUpdateStatus.IsPresent= updatestatus.IsPresent;
-                    _context.EmpScrumStatus.UpdateRange(existingUpdateStatus);
+                    _context.EmployeeScrumStatus.UpdateRange(existingUpdateStatus);
                 }
                 else
                 {
@@ -104,7 +104,7 @@ namespace ScrumTracker.DAL.DataAccessLayer
                         NonBillable = updatestatus.GetNonBillableTime(),
                         IsPresent = updatestatus.IsPresent,
                     };
-                    _context.EmpScrumStatus.AddRange(updateStatusEntity);
+                    _context.EmployeeScrumStatus.AddRange(updateStatusEntity);
                 }
                 await _context.SaveChangesAsync(default);
                 return new ResponseEntity<int>

@@ -9,13 +9,13 @@ namespace ScrumTracker.DataObject.Context
         public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options):base(options) { }
 
         public DbSet<UserMasterEntity> UserMaster { get; set; } 
-        public DbSet<EmpDetailsEntity> EmpDetails { get; set; }
-        public DbSet<EmpScrumStatusEntity> EmpScrumStatus { get; set; }
-        public DbSet<EmpWorkTypeEntity> EmpWorkType { get; set; }
+        public DbSet<EmpDetailsEntity> EmployeeDetails { get; set; }
+        public DbSet<EmpScrumStatusEntity> EmployeeScrumStatus { get; set; }
+        public DbSet<EmpWorkTypeEntity> EmployeeWorkType { get; set; }
         public DbSet<UserTokenEntity> UserToken { get; set; }
         public DbSet<RolesEntity> Roles { get; set; } 
-        public DbSet<EmpAwardEntity> EmpAward { get; set; }          
+        public DbSet<EmpAwardEntity> EmployeeAward { get; set; }          
         public DbSet<QuotesEntity> Quotes { get; set; }          
-        public DbSet<EmpProjectEntity> EmpProject { get; set; }          
+        public DbSet<EmpProjectEntity> EmployeeProject { get; set; }          
     }
 }

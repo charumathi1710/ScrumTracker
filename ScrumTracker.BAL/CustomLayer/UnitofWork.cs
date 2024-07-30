@@ -8,7 +8,7 @@ namespace ScrumTracker.BAL.CustomLayer
         public UnitofWork(IUserServiceBal userService, IAuthenticationBal authenticationBal,
             IRefreshTokenBal refreshTokenBal, IRegistrationBal registrationBal,
             IEmpAwardBal userAwardBal,IQuotesBal quotesBal,
-            IEmpProjectBal empProjectBal,)
+            IEmpProjectBal empProjectBal,
             IEmpServiceBal empServiceBal)
         {
             UserServiceBal = userService;

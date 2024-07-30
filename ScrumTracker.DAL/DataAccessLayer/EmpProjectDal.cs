@@ -47,7 +47,7 @@ namespace ScrumTracker.DAL.DataAccessLayer
         {
             try
             {
-                var existingProject = await _context.EmpProject
+                var existingProject = await _context.EmployeeProject
                     .FirstOrDefaultAsync(x => x.EmpProjectID == empProject.EmpProjectID);
 
                 if (existingProject != null)
@@ -57,11 +57,11 @@ namespace ScrumTracker.DAL.DataAccessLayer
                     existingProject.TimeMaterial = empProject.TimeMaterial;
                     existingProject.Retainer = empProject.Retainer;
                     existingProject.UpdatedAt = DateTime.UtcNow;
-                    _context.EmpProject.Update(existingProject);
+                    _context.EmployeeProject.Update(existingProject);
                 }
                 else
                 {
-                    _context.EmpProject.Add(empProject);
+                    _context.EmployeeProject.Add(empProject);
                 }
 
                 await _context.SaveChangesAsync();

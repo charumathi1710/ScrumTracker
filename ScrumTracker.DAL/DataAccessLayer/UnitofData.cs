@@ -7,22 +7,21 @@ using System.Threading.Tasks;
 
 namespace ScrumTracker.DAL.DataAccessLayer
 {
-    public class UnitofData:IUnitofData
+    public class UnitofData : IUnitofData
     {
         public UnitofData(IUserServiceDal userService, IAuthenticationDal authenticationDal,
             IRefreshTokenDal refreshTokenDal, IRegistrationDal registrationDal,
-            IEmpAwardDal userAwardDal,IQuotesDal quotesDal,
-            IEmpProjectDal empProjectDal)        
+            IEmpAwardDal userAwardDal, IQuotesDal quotesDal,
+            IEmpProjectDal empProjectDal, IEmpServiceDal empServiceDal)
         {
-           IEmpServiceDal empServiceDal)        {
             UserServiceDal = userService;
             AuthenticationDal = authenticationDal;
             RefreshTokenDal = refreshTokenDal;
             RegistrationDal = registrationDal;
-            UserAwardDal= userAwardDal;
+            UserAwardDal = userAwardDal;
             EmpServiceDal = empServiceDal;
-            QuotesDal= quotesDal;
-            EmpProjectDal= empProjectDal;
+            QuotesDal = quotesDal;
+            EmpProjectDal = empProjectDal;
         }
         public IUserServiceDal UserServiceDal { get; }
         public IAuthenticationDal AuthenticationDal { get; }
