@@ -58,10 +58,23 @@ namespace ScrumTracker.API.Controllers
             });
         }
         #endregion
+
         #region TaskOverview
         [Tags("TaskOverview")]
         [HttpGet("Search")]
         public async Task<IActionResult> SearchEmpScrumStatus(string? searchTerm, DateTime? date)
+        {
+            var responseEntity = await UnitOfWork.UserServiceBal.SearchEmpScrumStatus(searchTerm, date);
+            if (responseEntity.IsSuccess)
+            {
+                return Ok(responseEntity);
+            }
+            return StatusCode(responseEntity.StatusCode, responseEntity);
+        }
+
+        [Tags("Excel")]
+        [HttpGet("DownloadExcel")]
+        public async Task<IActionResult> DownloadExcelFile(string? searchTerm, DateTime? date)
         {
             var responseEntity = await UnitOfWork.UserServiceBal.SearchEmpScrumStatus(searchTerm, date);
             if (responseEntity.IsSuccess)
@@ -71,23 +84,33 @@ namespace ScrumTracker.API.Controllers
                 {
                     var worksheet = package.Workbook.Worksheets.Add("Employees");
 
-                    worksheet.Cells[1, 1].Value = "EmployeeName";
-                    worksheet.Cells[1, 2].Value = "EmployeeCode";
-                    worksheet.Cells[1, 3].Value = "EmployeeTask";
-                    worksheet.Cells[1, 4].Value = "WorkType";
-                    worksheet.Cells[1, 5].Value = "Billable";
-                    worksheet.Cells[1, 6].Value = "NonBillable";
+                    // Define headers
+                    var headers = new List<string> { "EmployeeName", "EmployeeCode", "EmployeeTask", "WorkType", "Billable", "NonBillable" };
 
-                    // Adding Data
-                    for (int i = 0; i < responseEntity.Result.Count; i++)
+                    // Add headers to worksheet
+                    for (int i = 0; i < headers.Count; i++)
                     {
-                        var employee = responseEntity.Result[i];
-                        worksheet.Cells[i + 2, 1].Value = employee.EmpName;
-                        worksheet.Cells[i + 2, 2].Value = employee.EmpCode;
-                        worksheet.Cells[i + 2, 3].Value = employee.EmpTask;
-                        worksheet.Cells[i + 2, 4].Value = employee.WorkType;
-                        worksheet.Cells[i + 2, 5].Value = employee.Billable;
-                        worksheet.Cells[i + 2, 6].Value = employee.NonBillable;
+                        worksheet.Cells[1, i + 1].Value = headers[i];
+                    }
+
+                    // Set header style
+                    using (var headerRange = worksheet.Cells[1, 1, 1, headers.Count])
+                    {
+                        headerRange.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                        headerRange.Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightBlue);
+                        headerRange.Style.Font.Bold = true;
+                    }
+
+                    // Add data to worksheet
+                    var employees = responseEntity.Result.Select((employee, index) => new { employee, index }).ToList();
+                    foreach (var emp in employees)
+                    {
+                        worksheet.Cells[emp.index + 2, 1].Value = emp.employee.EmpName;
+                        worksheet.Cells[emp.index + 2, 2].Value = emp.employee.EmpCode;
+                        worksheet.Cells[emp.index + 2, 3].Value = emp.employee.EmpTask;
+                        worksheet.Cells[emp.index + 2, 4].Value = emp.employee.WorkType;
+                        worksheet.Cells[emp.index + 2, 5].Value = emp.employee.Billable;
+                        worksheet.Cells[emp.index + 2, 6].Value = emp.employee.NonBillable;
                     }
 
                     package.Save();
@@ -97,11 +120,14 @@ namespace ScrumTracker.API.Controllers
                 var contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
                 var fileName = "Employees.xlsx";
 
-               // return File(content, contentType, fileName);
-                return Ok(responseEntity);
-            }            
-            return StatusCode(responseEntity.StatusCode, responseEntity);
+                return File(content, contentType, fileName);
+            }
+            else
+            {
+                // Handle error case appropriately, e.g., log error, notify user, etc.
+                return StatusCode(responseEntity.StatusCode, responseEntity);
+            }
         }
+        #endregion
     }
-    #endregion
 }

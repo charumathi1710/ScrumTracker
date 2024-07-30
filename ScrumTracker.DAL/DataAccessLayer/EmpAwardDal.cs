@@ -63,24 +63,26 @@ namespace ScrumTracker.DAL.DataAccessLayer
             using var transaction = await _context.Database.BeginTransactionAsync();
             try
             {
+                int empAwardID = model.EmpAwardID;
+
                 EmpAwardEntity entity;
 
-                if (model.EmpAwardID == 0)
+                if (empAwardID == 0)
                 {
-                    await _context.EmpAward.AddAsync(model);
+                    await _context.EmployeeAward.AddAsync(model);
                     await _context.SaveChangesAsync();
                     await transaction.CommitAsync();
                     entity = model;
                 }
                 else
                 {
-                    entity = await _context.EmpAward.FirstOrDefaultAsync(x => x.EmpAwardID == model.EmpAwardID);
+                    entity = await _context.EmployeeAward.FirstOrDefaultAsync(x => x.EmpAwardID == empAwardID); // Use the original ID for lookup
                     if (entity == null)
                     {
                         return new ResponseEntity<EmpAwardResponseEntity>
                         {
                             IsSuccess = false,
-                            ResponseMessage = $"Invalid {model.EmpAwardID} ID! Try Again.",
+                            ResponseMessage = $"Invalid {empAwardID} ID! Try Again.",
                             StatusMessage = HttpStatusCode.NotFound.ToString(),
                             StatusCode = StatusCodes.Status404NotFound,
                         };
@@ -96,7 +98,7 @@ namespace ScrumTracker.DAL.DataAccessLayer
                     await transaction.CommitAsync();
                 }
 
-                var employee = await _context.EmpDetails.FirstOrDefaultAsync(e => e.EmpDetailId == entity.EmpDetailId);
+                var employee = await _context.EmployeeDetails.FirstOrDefaultAsync(e => e.EmpDetailId == entity.EmpDetailId);
                 if (employee == null)
                 {
                     return new ResponseEntity<EmpAwardResponseEntity>
@@ -122,9 +124,9 @@ namespace ScrumTracker.DAL.DataAccessLayer
                 {
                     Result = responseEntity,
                     IsSuccess = true,
-                    ResponseMessage = model.EmpAwardID == 0 ? "UserAward created successfully." : "UserAward updated successfully.",
-                    StatusMessage = model.EmpAwardID == 0 ? HttpStatusCode.Created.ToString() : HttpStatusCode.NoContent.ToString(),
-                    StatusCode = model.EmpAwardID == 0 ? StatusCodes.Status201Created : StatusCodes.Status204NoContent,
+                    ResponseMessage = empAwardID == 0 ? "UserAward created successfully." : "UserAward updated successfully.",
+                    StatusMessage = empAwardID == 0 ? HttpStatusCode.Created.ToString() : HttpStatusCode.OK.ToString(),
+                    StatusCode = empAwardID == 0 ? StatusCodes.Status201Created : StatusCodes.Status200OK,
                 };
             }
             catch (Exception ex)
@@ -146,7 +148,7 @@ namespace ScrumTracker.DAL.DataAccessLayer
             using var transaction = await _context.Database.BeginTransactionAsync();
             try
             {
-                var dacpData = await _context.EmpAward.FirstOrDefaultAsync(x => x.EmpAwardID == Id);
+                var dacpData = await _context.EmployeeAward.FirstOrDefaultAsync(x => x.EmpAwardID == Id);
 
                 if (dacpData == null)
                 {
@@ -160,7 +162,7 @@ namespace ScrumTracker.DAL.DataAccessLayer
                     };
                 }
 
-                _context.EmpAward.Remove(dacpData);
+                _context.EmployeeAward.Remove(dacpData);
                 await _context.SaveChangesAsync(default);
                 await transaction.CommitAsync();
 

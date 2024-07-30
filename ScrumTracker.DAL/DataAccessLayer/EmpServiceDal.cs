@@ -24,7 +24,7 @@ namespace ScrumTracker.DAL.DataAccessLayer
         }
         public async Task<ResponseEntity<List<EmpDetailsEntity>>> GetAllEmpDetails()
         {
-            var employee = await _context.EmpDetails.Where(e => e.IsActive).ToListAsync();
+            var employee = await _context.EmployeeDetails.Where(e => e.IsActive).ToListAsync();
             return new ResponseEntity<List<EmpDetailsEntity>>
             {
                 Result = employee,
@@ -38,7 +38,7 @@ namespace ScrumTracker.DAL.DataAccessLayer
         {
             try
             {
-                var existingdata = await _context.EmpDetails
+                var existingdata = await _context.EmployeeDetails
                   .Where(x => x.EmpDetailId == EmpDet.EmpDetailId).FirstOrDefaultAsync();
                 var postEmp = new EmpDetailsEntity();
                 if (existingdata != null)
@@ -56,7 +56,7 @@ namespace ScrumTracker.DAL.DataAccessLayer
                     existingdata.EmpJoinedOn = EmpDet.EmpJoinedOn;
                     existingdata.EmpPersonalEmail= EmpDet.EmpPersonalEmail;
                     existingdata.IsActive = EmpDet.IsActive;
-                    _context.EmpDetails.UpdateRange(existingdata);
+                    _context.EmployeeDetails.UpdateRange(existingdata);
                 }
                 else
                 {
@@ -74,7 +74,7 @@ namespace ScrumTracker.DAL.DataAccessLayer
                     postEmp.EmpPersonalEmail = EmpDet.EmpPersonalEmail;
                     postEmp.IsActive = postEmp.IsActive;
                    
-                    _context.EmpDetails.AddRange(postEmp);
+                    _context.EmployeeDetails.AddRange(postEmp);
                 }
                 await _context.SaveChangesAsync(default);
                 int empId = existingdata?.EmpDetailId ?? postEmp.EmpDetailId;
@@ -105,7 +105,7 @@ namespace ScrumTracker.DAL.DataAccessLayer
 
             try
             {
-                var employee = await _context.EmpDetails.FindAsync(id);
+                var employee = await _context.EmployeeDetails.FindAsync(id);
 
                 if (employee == null)
                 {
@@ -142,7 +142,7 @@ namespace ScrumTracker.DAL.DataAccessLayer
         public async Task<ResponseEntity<List<EmpDetailsEntity>>> GetEmpDetailById(int id)
         {
             var response = new ResponseEntity<List<EmpDetailsEntity>>();
-            var emp = await _context.EmpDetails.Where(e => e.IsActive && e.EmpDetailId == id).FirstOrDefaultAsync();
+            var emp = await _context.EmployeeDetails.Where(e => e.IsActive && e.EmpDetailId == id).FirstOrDefaultAsync();
             if (emp == null)
         {
             response.Result = null;

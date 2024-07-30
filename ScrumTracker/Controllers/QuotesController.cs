@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ScrumTracker.BAL.CustomLayer;
 using ScrumTracker.BAL.ICustomLayer;
@@ -6,6 +7,7 @@ using ScrumTracker.DataObject.Entity;
 
 namespace ScrumTracker.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class QuotesController : ControllerBase
