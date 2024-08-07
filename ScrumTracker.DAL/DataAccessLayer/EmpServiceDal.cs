@@ -60,7 +60,6 @@ namespace ScrumTracker.DAL.DataAccessLayer
                 }
                 else
                 {
-
                     postEmp.EmpName = EmpDet.EmpName;
                     postEmp.EmpCode = EmpDet.EmpCode;
                     postEmp.EmpDept = EmpDet.EmpDept;
@@ -72,7 +71,7 @@ namespace ScrumTracker.DAL.DataAccessLayer
                     postEmp.EmpSkills = EmpDet.EmpSkills;
                     postEmp.EmpJoinedOn = EmpDet.EmpJoinedOn;
                     postEmp.EmpPersonalEmail = EmpDet.EmpPersonalEmail;
-                    postEmp.IsActive = postEmp.IsActive;
+                    postEmp.IsActive = EmpDet.IsActive;
                    
                     _context.EmployeeDetails.AddRange(postEmp);
                 }

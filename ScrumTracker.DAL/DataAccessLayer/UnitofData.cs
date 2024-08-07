@@ -14,6 +14,7 @@ namespace ScrumTracker.DAL.DataAccessLayer
             IEmpAwardDal userAwardDal, IQuotesDal quotesDal,
             IEmpProjectDal empProjectDal, IEmpServiceDal empServiceDal,
             IEmployeeRepositoryDal employeeRepositoryDal)
+                  
         {
             UserServiceDal = userService;
             AuthenticationDal = authenticationDal;
