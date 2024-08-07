@@ -18,4 +18,12 @@
     <ProjectReference Include="..\ScrumTracker.DataObject\ScrumTracker.DataObject.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="D:\VISUAL STUDIO 2022\ScrumTracker\ScrumTracker.DAL\IDataAccessLayer\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="D:\VISUAL STUDIO 2022\ScrumTracker\ScrumTracker.DAL\IDataAccessLayer\.editorconfig" />
+  </ItemGroup>
+
 </Project>

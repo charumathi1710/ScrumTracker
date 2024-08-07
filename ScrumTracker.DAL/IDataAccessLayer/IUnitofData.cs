@@ -16,5 +16,6 @@ namespace ScrumTracker.DAL.IDataAccessLayer
         public IEmpServiceDal EmpServiceDal { get; }
         public IQuotesDal QuotesDal { get; }
         public IEmpProjectDal EmpProjectDal { get; }
+        public IEmployeeRepositoryDal EmployeeRepositoryDal { get; }
     }
 }

@@ -11,7 +11,7 @@ using ScrumTracker.Models;
 
 namespace ScrumTracker.API.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserServiceController : ControllerBase

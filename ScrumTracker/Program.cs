@@ -8,6 +8,8 @@ using ScrumTracker.BAL.CustomLayer;
 using ScrumTracker.BAL.ICustomLayer;
 using ScrumTracker.DataObject.Context;
 using ScrumTracker.DataObject.RequestEntity;
+using System.Net.Mail;
+using System.Net;
 using System.Text;
 
 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
@@ -69,6 +71,16 @@ builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("Project Manager", policy => policy.RequireRole("Project Manager"));
     options.AddPolicy("PC", policy => policy.RequireRole("Project Co-ordinator"));
+});
+
+builder.Services.AddSingleton<SmtpClient>(sp =>
+{
+    return new SmtpClient("smtp.gmail.com")
+    {
+        Port = 587,
+        Credentials = new NetworkCredential("mkcharumathi@gmail.com", "lezj fzkw vjsy imvu"),
+        EnableSsl = true,
+    };
 });
 
 var app = builder.Build();

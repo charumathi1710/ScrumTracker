@@ -8,8 +8,8 @@ namespace ScrumTracker.BAL.CustomLayer
         public UnitofWork(IUserServiceBal userService, IAuthenticationBal authenticationBal,
             IRefreshTokenBal refreshTokenBal, IRegistrationBal registrationBal,
             IEmpAwardBal userAwardBal,IQuotesBal quotesBal,
-            IEmpProjectBal empProjectBal,
-            IEmpServiceBal empServiceBal)
+            IEmpProjectBal empProjectBal,IEmpServiceBal empServiceBal,
+            IEmployeeMailServiceBal employeeMailServiceBal,IEmailService emailService)
         {
             UserServiceBal = userService;
             AuthenticationBal = authenticationBal;
@@ -19,6 +19,8 @@ namespace ScrumTracker.BAL.CustomLayer
             EmpProjectBal = empProjectBal;
             EmpServiceBal=empServiceBal;
             QuotesBal=quotesBal;
+            EmployeeMailServiceBal = employeeMailServiceBal;
+            EmailService = emailService;
         }
         public IUserServiceBal UserServiceBal { get; }
         public IAuthenticationBal AuthenticationBal { get; }
@@ -28,5 +30,7 @@ namespace ScrumTracker.BAL.CustomLayer
         public IEmpServiceBal EmpServiceBal { get; }
         public IQuotesBal QuotesBal { get; }
         public IEmpProjectBal EmpProjectBal { get; }
+        public IEmployeeMailServiceBal EmployeeMailServiceBal { get; }
+        public IEmailService EmailService { get; }
     }
 }
