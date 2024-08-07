@@ -11,8 +11,8 @@ namespace ScrumTracker.DAL.DataAccessLayer
     {
         public UnitofData(IUserServiceDal userService, IAuthenticationDal authenticationDal,
             IRefreshTokenDal refreshTokenDal, IRegistrationDal registrationDal,
-            IEmpAwardDal userAwardDal, IQuotesDal quotesDal,
-            IEmpProjectDal empProjectDal, IEmpServiceDal empServiceDal)
+            IEmpAwardDal userAwardDal,IQuotesDal quotesDal,
+            IEmpProjectDal empProjectDal, IEmpServiceDal empServiceDal)        
         {
             UserServiceDal = userService;
             AuthenticationDal = authenticationDal;

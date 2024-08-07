@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ScrumTracker.BAL.ICustomLayer;
 using ScrumTracker.DataObject.Entity;
@@ -6,6 +7,7 @@ using ScrumTracker.DataObject.ResponseEntity;
 
 namespace ScrumTracker.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class EmpServiceController : ControllerBase
@@ -29,6 +31,7 @@ namespace ScrumTracker.API.Controllers
             var result= await UnitOfWork.EmpServiceBal.GetEmpDetailById(id);
             return Ok(result);
         }
+        [Authorize(Policy = "PC")]
         [Tags("Employee Management")]
         [HttpPost("PostEmployee")]
         public async Task<IActionResult> InsertScrumStatus([FromBody] EmpDetailsResponseEntity model)
@@ -43,6 +46,7 @@ namespace ScrumTracker.API.Controllers
                 result.StatusCode,
             });
         }
+        [Authorize(Policy = "PC")]
         [Tags("Employee Management")]
         [HttpDelete("DeleteEmployee")]
         public async Task<IActionResult> DeleteEmployee(int id)

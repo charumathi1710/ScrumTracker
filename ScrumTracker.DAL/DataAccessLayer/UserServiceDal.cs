@@ -83,6 +83,7 @@ namespace ScrumTracker.DAL.DataAccessLayer
             {
                 var existingUpdateStatus = await _context.EmployeeScrumStatus
                   .Where(x => x.EmpStatusId == updatestatus.EmpStatusId).FirstOrDefaultAsync();
+                var scrum = new EmpScrumStatusEntity();
                 if (existingUpdateStatus != null)
                 {
                     existingUpdateStatus.EmpDetailId = updatestatus.EmpDetailId;
@@ -107,9 +108,10 @@ namespace ScrumTracker.DAL.DataAccessLayer
                     _context.EmployeeScrumStatus.AddRange(updateStatusEntity);
                 }
                 await _context.SaveChangesAsync(default);
+                int scrumId =existingUpdateStatus?.EmpStatusId?? scrum.EmpStatusId;
                 return new ResponseEntity<int>
                 {
-                    Result = existingUpdateStatus?.EmpStatusId ?? updatestatus.EmpStatusId,
+                    Result = scrumId,
                     IsSuccess = true,
                     ResponseMessage = existingUpdateStatus == null ? "Data Created successfully." : "Data Updated successfully.",
                     StatusMessage = HttpStatusCode.OK.ToString(),
