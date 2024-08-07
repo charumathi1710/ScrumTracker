@@ -11,7 +11,7 @@ using ScrumTracker.Models;
 
 namespace ScrumTracker.API.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserServiceController : ControllerBase
@@ -45,6 +45,7 @@ namespace ScrumTracker.API.Controllers
         }
         [Tags("Daily Scrum")]
         [HttpPost("InsertEmpScrumStatus")]
+        [Authorize(Policy = "PC")]
         public async Task<IActionResult> InsertScrumStatus([FromBody] EmpStatusResponseEntity model)
         {
             var result = await UnitOfWork.UserServiceBal.PostScrumStatusData(model);
@@ -60,6 +61,7 @@ namespace ScrumTracker.API.Controllers
         #endregion
 
         #region TaskOverview
+        //[Authorize(Policy = "PC")]
         [Tags("TaskOverview")]
         [HttpGet("Search")]
         public async Task<IActionResult> SearchEmpScrumStatus(string? searchTerm, DateTime? date)
