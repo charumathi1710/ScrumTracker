@@ -45,6 +45,10 @@ namespace ScrumTracker.BAL
 
             _service.AddTransient<IEmpProjectDal, EmpProjectDal>();
             _service.AddTransient<IEmpProjectBal, EmpProjectBal>();
+
+            _service.AddTransient<IEmployeeRepositoryDal, EmployeeRepositoryDal>();
+            _service.AddTransient<IEmployeeMailServiceBal, EmployeeMailServiceBal>();
+            _service.AddTransient<IEmailService, EmailService>();
         }
     }       
 }

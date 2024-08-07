@@ -16,5 +16,7 @@ namespace ScrumTracker.BAL.ICustomLayer
        public IEmpServiceBal EmpServiceBal { get; }
        public IQuotesBal QuotesBal { get; }
        public IEmpProjectBal EmpProjectBal { get; }
+       public IEmployeeMailServiceBal EmployeeMailServiceBal { get; }
+       public IEmailService EmailService { get; }
     }
 }
