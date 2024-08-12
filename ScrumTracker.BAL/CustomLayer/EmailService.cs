@@ -19,7 +19,8 @@ namespace ScrumTracker.BAL.CustomLayer
 
         public async Task<bool> SendEmailAsync(string subject, string body, List<string> recipients)
         {
-            var fromAddress = new MailAddress("mkcharumathi@gmail.com", "Charu");
+            //var fromAddress = new MailAddress("mkcharumathi@gmail.com", "Charu");
+            var fromAddress = new MailAddress("nihalanazneen027@gmail.com", "Nihala");
             var mailMessage = new MailMessage
             {
                 From = fromAddress,
@@ -40,7 +41,6 @@ namespace ScrumTracker.BAL.CustomLayer
             }
             catch (Exception ex)
             {
-                // Handle or log the exception as needed
                 return false;
             }
         }

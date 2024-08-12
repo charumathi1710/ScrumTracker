@@ -20,8 +20,6 @@ namespace ScrumTracker.BAL.CustomLayer
         public async Task<string> GenerateScrumReportEmailAsync()
         {
             var employeeScrumReports = await unitofData.EmployeeRepositoryDal.GetEmployeeScrumReportAsync();
-
-            // Group by department
             var groupedByDept = employeeScrumReports
                 .GroupBy(e => e.EmpDept)
                 .ToDictionary(g => g.Key, g => g.ToList());

@@ -17,6 +17,16 @@ ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddInfracture();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        policy =>
+        {
+            policy.AllowAnyOrigin()
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
 
 builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("dbcs")));
 
@@ -25,7 +35,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "JWTTokenAuthentication", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Scrum Tracker", Version = "v1" });
 
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
@@ -78,7 +88,8 @@ builder.Services.AddSingleton<SmtpClient>(sp =>
     return new SmtpClient("smtp.gmail.com")
     {
         Port = 587,
-        Credentials = new NetworkCredential("mkcharumathi@gmail.com", "lezj fzkw vjsy imvu"),
+        //Credentials = new NetworkCredential("mkcharumathi@gmail.com", "lezj fzkw vjsy imvu"),       
+        Credentials = new NetworkCredential("nihalanazneen027@gmail.com", "lezj fzkw vjsy imvu"),
         EnableSsl = true,
     };
 });
@@ -86,13 +97,14 @@ builder.Services.AddSingleton<SmtpClient>(sp =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (!app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseExceptionHandler();
 }
-
+app.UseSwagger();
+app.UseSwaggerUI();
 app.UseHttpsRedirection();
+app.UseCors("AllowAllOrigins");
 app.UseAuthentication();
 app.UseAuthorization();
 
